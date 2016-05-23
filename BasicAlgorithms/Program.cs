@@ -38,6 +38,15 @@ namespace BasicAlgorithms
             Console.WriteLine("{0} (False)", BinarySearch(anotherArray, 9));
             Console.WriteLine("{0} (False)", BinarySearch(anotherArray, -5));
 
+            Console.WriteLine("---------");
+            Console.WriteLine("{0} (True)", BinarySearchNonrecursive(anotherArray, 2));
+            Console.WriteLine("{0} (True)", BinarySearchNonrecursive(anotherArray, 15));
+            Console.WriteLine("{0} (True)", BinarySearchNonrecursive(anotherArray, 50));
+            Console.WriteLine("{0} (False)", BinarySearchNonrecursive(anotherArray, 55));
+            Console.WriteLine("{0} (False)", BinarySearchNonrecursive(anotherArray, 3));
+            Console.WriteLine("{0} (False)", BinarySearchNonrecursive(anotherArray, 9));
+            Console.WriteLine("{0} (False)", BinarySearchNonrecursive(anotherArray, -5));
+
         }
 
         // Sequential Search
@@ -111,5 +120,40 @@ namespace BasicAlgorithms
             // or the elements BEFORE the middle element
         }
 
+
+        static bool BinarySearchNonrecursive(int[] arr, int x)
+        {
+            int startIndex = 0;
+            int endIndex = arr.Length - 1;
+
+            int counter = 0;
+
+            while (startIndex <= endIndex)
+            {
+                counter++;
+                int middleIndex = ((endIndex - startIndex + 1) / 2) + startIndex;
+                int middleElement = arr[middleIndex];
+
+                if (middleElement == x)
+                {
+                    Console.WriteLine(counter);
+                    return true;
+                }
+                else if (middleElement < x)
+                {
+                    // Binary Search on the LATER portion of the array
+                    startIndex = middleIndex + 1;
+                }
+                else // if (middleElement > x)
+                {
+                    // Binary Search on the EARLIER portion of the array
+                    endIndex = middleIndex - 1;
+                }
+
+            }
+            Console.WriteLine(counter);
+            return false;
+
+        }
     }
 }
