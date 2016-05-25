@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BasicAlgorithms
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -49,10 +49,34 @@ namespace BasicAlgorithms
 
         }
 
+
+
+        public static int[] BubbleSort(int[] unsorted)
+        {
+            int[] sorted = (int[])unsorted.Clone();
+
+            for (int stopPoint = sorted.Length - 1; stopPoint > 0; stopPoint--)
+            {
+                for (int i = 0; i < stopPoint; i++)
+                {
+                    var left = sorted[i];
+                    var right = sorted[i + 1];
+                    if (right < left)
+                    {
+                        // swap!
+                        sorted[i] = right;
+                        sorted[i + 1] = left;
+                    }
+                }
+
+            }
+            return sorted;
+        }
+
         // Sequential Search
         // aka Linear Search
 
-        static bool Contains(int[] arr, int x)
+        public static bool Contains(int[] arr, int x)
         {
             // foreach (int i in arr)
             for (int index = 0; index < arr.Length; index++)
@@ -68,7 +92,7 @@ namespace BasicAlgorithms
 
 
         // assume that arr is pre-sorted
-        static bool ContainsForSortedData(int[] arr, int x)
+        public static bool ContainsForSortedData(int[] arr, int x)
         {
             foreach (int i in arr)
             {
@@ -86,7 +110,7 @@ namespace BasicAlgorithms
 
 
         // binary search - cut the search space in half every iteration
-        static bool BinarySearch(int[] arr, int x)
+        public static bool BinarySearch(int[] arr, int x)
         {
             // look at the middle element of the array
             int middleIndex = arr.Length / 2;
@@ -121,7 +145,7 @@ namespace BasicAlgorithms
         }
 
 
-        static bool BinarySearchNonrecursive(int[] arr, int x)
+        public static bool BinarySearchNonrecursive(int[] arr, int x)
         {
             int startIndex = 0;
             int endIndex = arr.Length - 1;
